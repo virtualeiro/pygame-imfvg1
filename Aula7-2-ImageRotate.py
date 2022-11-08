@@ -3,6 +3,7 @@
 import pygame, sys
 from pygame.locals import *
 import numpy as np
+
 BLUE = (0,0,255)
 WHITE=(255,255,255)
 BLACK=(0,0,0)
@@ -25,15 +26,20 @@ image = pygame. transform. scale(image, (30, 28))
 
 while True: #Main loop
     screen.fill((WHITE))
+    #linhas
     pygame.draw.line(screen, RED,(0,cnt_y), (max_x,cnt_y), 1)
     pygame.draw.line(screen, RED,(cnt_x,0), (cnt_x,max_y), 1)
-
+    
+    #circulo
     pygame.draw.circle(screen, BLUE, pos_circle, 10)
     pos_circle=np.round(pos_circle,2)    
     screen.blit(font.render(str(pos_circle), True, BLACK), (0,10))
-
+    
+    #linha que une circulo ao centro
     pygame.draw.line(screen, (0,255,0),(cnt_x,cnt_y),
                      pos_circle,1)
+    
+    #Angulo entre o circulo e o eixo do x
     #arctan2
     #The single-argument arctangent function cannot distinguish between diametrically opposite directions
     #https://en.wikipedia.org/wiki/Atan2
@@ -42,10 +48,12 @@ while True: #Main loop
     angulo_em_graus=np.round(angulo_em_graus)
     screen.blit(font.render("[" + str(angulo_em_graus)+"] [" + str(-angulo_em_graus)+ "]", True, BLACK), (pos_circle[0],pos_circle[1]+20))
     
+    #Rodar a imagem da seta
     rotimage = pygame.transform.rotate(image,-angulo_em_graus)
     rect = rotimage.get_rect(center=pos_circle)
     screen.blit(rotimage,rect) #Roda
 
+    #processamento do teclado
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
         pos_circle[0]-=0.1
