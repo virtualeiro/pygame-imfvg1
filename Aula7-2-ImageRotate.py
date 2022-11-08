@@ -19,7 +19,7 @@ cnt_y=screen.get_height()/2
 max_x=screen.get_width()
 max_y=screen.get_height()
 
-pos_circle =[screen.get_width()/2, screen.get_height()/2]
+pos_circle =[cnt_x, cnt_y]
 image = pygame.image.load('arrow.png').convert_alpha()
 image = pygame. transform. scale(image, (30, 28))
 
