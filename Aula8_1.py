@@ -5,7 +5,7 @@ from pygame.locals import *
 
 
 pygame.init()
-pygame.display.set_caption("Grafico") 
+pygame.display.set_caption("Aula 8 - 1") 
 DISPLAYSURF = pygame.display.set_mode((400,300))
 WHITE = (255, 255, 255)
 
